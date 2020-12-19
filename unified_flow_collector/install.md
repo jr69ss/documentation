@@ -205,7 +205,7 @@ Specifies the number of concurrent decoder workers.
 Set to `true` to enable decoding of IPFIX records.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
@@ -214,7 +214,7 @@ Set to `true` to enable decoding of IPFIX records.
 Set to `true` to enable decoding of Netflow v5 records.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
@@ -223,7 +223,7 @@ Set to `true` to enable decoding of Netflow v5 records.
 Set to `true` to enable decoding of Netflow v9 records.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
@@ -232,7 +232,7 @@ Set to `true` to enable decoding of Netflow v9 records.
 Set to `true` to enable decoding of sFlow v5 records.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
@@ -241,7 +241,7 @@ Set to `true` to enable decoding of sFlow v5 records.
 Set to `true` to enable decoding of sFlow `flow_sample` and `flow_sample_expanded` records.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
@@ -250,7 +250,7 @@ Set to `true` to enable decoding of sFlow `flow_sample` and `flow_sample_expande
 When set to `true`, the packet data from an sFlow `sampled_header` record will be stored in `l2.section.sample` as a hex-encoded string.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `false`
 
@@ -259,7 +259,7 @@ When set to `true`, the packet data from an sFlow `sampled_header` record will b
 Set to `true` to enable decoding of sFlow `counters_sample` and `counters_sample_expanded` records.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
@@ -291,7 +291,7 @@ Specifies which identifier values will be included in the final dataset.
 For telemetry sources which provide CPU usage as timeticks, utilization percentages will be calculated. If this setting is set `false` the timetick values will be removed from the final dataset. If `true` they will be kept, in addition to the utilization values.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `false`
 
@@ -322,7 +322,7 @@ Flow records generally include the index of ingress and egress interfaces by whi
 Setting this value to `false` will disable the enrichment of records with interface atributes.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
@@ -340,7 +340,7 @@ This setting specifies the maximum number of interfaces which will be held in th
 If the enrichment with network interface attributes is enabled (`UNICOLLD_DECODER_ENRICH_NETIF_GET_ATTRS` is `true`), this setting determined whether SNMP polls will be used to gather these attributes.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `false`
 
@@ -446,7 +446,7 @@ Some features require that related values from separate fields are stored as an 
 > NOTE! If records are being output to Elasticsearch this setting should be set to `true`.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
@@ -496,7 +496,7 @@ Specifies whether flow records should be enriched with a Community ID value.
 > For more information on community IDs see [https://github.com/corelight/community-id-spec](https://github.com/corelight/community-id-spec).
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
@@ -512,7 +512,7 @@ A 16-bit value used as the seed for determining the Community ID of a flow recor
 Specifies whether flow records should be enriched with a Conversation ID value. This value is similar to a community ID (see... UNICOLLD_DECODER_ENRICH_COMMUNITYID_ENABLE). However rather than being based on the src/dst relationship of two endpoints, it is based on the client/server perspective. While two related unidirectional flows, e.g. an HTTP request and the corresponding HTTP response, will have different community IDs. Both of these flows will have the same conversation ID. This provides greater flexibility when exploring a complex flow dataset.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
@@ -585,7 +585,7 @@ Specifies whether the `stdout` output is enabled.
 > NOTE! At anything more than a few flow records per second the data will scroll too fast to be useful. For this reason the `stdout` output should be used primarily for manual testing.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `false`
 
@@ -604,7 +604,7 @@ Specifies whether the `stdout` output is enabled.
 Specifies whether the Elasticsearch output is enabled.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `false`
 
@@ -613,7 +613,7 @@ Specifies whether the Elasticsearch output is enabled.
 Specifies whether the data will be sent using Elastic Common Schema (ECS).
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `false`
 
@@ -676,7 +676,7 @@ It can sometimes be useful to have separate indices for different environments, 
 Specifies whether the output should attempt to add the required index template to Elasticsearch.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
@@ -685,7 +685,7 @@ Specifies whether the output should attempt to add the required index template t
 If the output is configured to add the index template to Elasticsearch (`UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_ENABLE` is `true`), this setting determines whether the index template should be overwritten if it already exists.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `false`
 
@@ -731,7 +731,7 @@ The base64-encoded token to use for authorization. If set, this value overrides 
 This setting is used to enable/disable TLS connections to Elasticsearch.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `false`
 
@@ -740,7 +740,7 @@ This setting is used to enable/disable TLS connections to Elasticsearch.
 This setting is used to enable/disable TLS verification of the Elasticsearch server to which the output is attempting to connect.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `false`
 
@@ -756,7 +756,7 @@ The path to the Certificate Authority (CA) certificate to use for verification o
 Specifies whether to retry connecting to Elasticsearch after a connection has failed.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
@@ -765,7 +765,7 @@ Specifies whether to retry connecting to Elasticsearch after a connection has fa
 Specifies whether to retry bulk indexing requests which have timed-out.
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `false`
 
@@ -839,7 +839,7 @@ The setting determines the level of compression used for stored values.
 #### `UNICOLLD_OUTPUT_RISKIQ_ENABLE`
 
 - Valid Values
-  - `true | false`
+  - `true`, `false`
 - Default
   - `true`
 
