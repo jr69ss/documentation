@@ -1,8 +1,8 @@
 module.exports = {
   title: 'ElastiFlow',
   tagline: 'Documentation & Guides',
-  url: 'https://elastiflow.github.io/',
-  baseUrl: '/',
+  url: 'https://elastiflow.github.io',
+  baseUrl: '/documentation/',
   organizationName: 'elastiflow',
   projectName: 'documentation',
   onBrokenLinks: 'throw',
