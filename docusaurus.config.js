@@ -24,11 +24,6 @@ module.exports = {
           position: 'left',
         },
         {to: 'blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/elastiflow/unicolld',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     footer: {
@@ -66,10 +61,6 @@ module.exports = {
             {
               label: 'Blog',
               to: 'blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/elastiflow/unicolld',
             },
           ],
         },
