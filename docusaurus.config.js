@@ -23,7 +23,7 @@ module.exports = {
           label: 'Docs',
           position: 'left',
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
+        // {to: 'blog', label: 'Blog', position: 'left'},
       ],
     },
     footer: {
@@ -46,6 +46,10 @@ module.exports = {
           title: 'Community',
           items: [
             {
+              label: 'ElastiFlow',
+              href: 'https://www.elastiflow.com/',
+            },
+            {
               label: 'Slack',
               href: 'https://elastiflowcommunity.slack.com',
             },
@@ -53,15 +57,23 @@ module.exports = {
               label: 'Twitter',
               href: 'https://twitter.com/elastiflow',
             },
+            {
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/company/elastiflow%E2%84%A2/',
+            }
           ],
         },
         {
-          title: 'More',
+          title: 'Contact',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
+              label: 'Support',
+              to: 'mailto:support@elastiflow.com',
             },
+            // {
+            //   label: 'Blog',
+            //   to: 'blog',
+            // },
           ],
         },
       ],
@@ -74,15 +86,13 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            'https://github.com/elastiflow/documentation/tree/main/docs/',
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+            'https://github.com/elastiflow/documentation/tree/main/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
