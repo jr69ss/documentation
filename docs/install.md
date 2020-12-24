@@ -23,77 +23,127 @@ The following `docker-compose.yml` file provides an example with common settings
 version: '3'
 
 services:
+  # ElastiFlow Unified Flow Collector
   elastiflow-ufc:
-    image: elastiflow/flow-collector:v5.0.0-beta.1
-    container_name: 'elastiflow-ufc'
+    image: elastiflow/flow-collector:v5.0.0-beta.1.1
+    container_name: elastiflow-ufc
     restart: 'unless-stopped'
     network_mode: 'host'
     volumes:
-      - /etc/elastiflow/maxmind:/etc/elastiflow/maxmind
+      - /etc/elastiflow:/etc/elastiflow
     environment:
+      UNICOLLD_LICENSED_CORES: 1
+
+      #UNICOLLD_LOGGER_LEVEL: 'info'
+      #UNICOLLD_LOGGER_ENCODING: 'json'
+
+      #UNICOLLD_SERVER_UDP_IP: '0.0.0.0'
       UNICOLLD_SERVER_UDP_PORT: 9995
+      #UNICOLLD_SERVER_UDP_PACKET_STREAM_MAX_SIZE: 
+      #UNICOLLD_SERVER_UDP_READ_BUFFER_MAX_SIZE: 33554432
 
-      # The size of the queue of where UDP PDUs wait for the decoder.
-      # Recommendation: 4096 x the number of cores used for decoding.
-      UNICOLLD_SERVER_UDP_PACKET_STREAM_MAX_SIZE: 4096
+      #UNICOLLD_DECODER_SETTINGS_PATH: '/etc/elastiflow'
 
-      # The number of decoder workers.
-      # Recommendation: 2 x the number of cores used for decoding.
-      UNICOLLD_DECODER_POOL_SIZE: 2
+      #UNICOLLD_DECODER_IPFIX_ENABLE: 'true'
+      #UNICOLLD_DECODER_NETFLOW5_ENABLE: 'true'
+      #UNICOLLD_DECODER_NETFLOW9_ENABLE: 'true'
+      #UNICOLLD_DECODER_SFLOW5_ENABLE: 'true'
+      #UNICOLLD_DECODER_SFLOW_FLOWS_ENABLE: 'true'
+      #UNICOLLD_DECODER_SFLOW_FLOWS_KEEP_SAMPLES: 'false'
+      #UNICOLLD_DECODER_SFLOW_COUNTERS_ENABLE: 'true'
 
-      # none, exporter, all
-      UNICOLLD_DECODER_ENRICH_DNS_RESOLVE_IPS: 'all'
+      #UNICOLLD_DECODER_LEVEL: 'enrich'
+      #UNICOLLD_DECODER_TRANSLATE_KEEP_IDS: 'default'
+      #UNICOLLD_DECODER_ENRICH_KEEP_CPU_TICKS: 'false'
 
-      UNICOLLD_DECODER_ENRICH_SNMP_ENABLE: 'true'
-      UNICOLLD_DECODER_ENRICH_SNMP_COMMUNITY: 'public'
+      #UNICOLLD_DECODER_ENRICH_DNS_RESOLVE_IPS: 'none'
+      #UNICOLLD_DECODER_ENRICH_DNS_CACHE_SIZE: 524288
+      
+      #UNICOLLD_DECODER_ENRICH_NETIF_GET_ATTRS: 'true'
+      #UNICOLLD_DECODER_ENRICH_NETIF_CACHE_SIZE: 262144
+      #UNICOLLD_DECODER_ENRICH_SNMP_ENABLE: 'false'
+      #UNICOLLD_DECODER_ENRICH_SNMP_PORT: 161
+      #UNICOLLD_DECODER_ENRICH_SNMP_VERSION: 2
+      #UNICOLLD_DECODER_ENRICH_SNMP_COMMUNITY: 'public'
+      #UNICOLLD_DECODER_ENRICH_SNMP_TIMEOUT: 2
+      #UNICOLLD_DECODER_ENRICH_SNMP_RETRIES: 1
+      
+      #UNICOLLD_DECODER_ENRICH_APP_CACHE_SIZE: 262144
 
-      # none, riskiq, maxmind (riskiq will be implemented in beta 2)
-      UNICOLLD_DECODER_ENRICH_ASN_LOOKUP: 'maxmind'
+      #UNICOLLD_DECODER_ENRICH_ASN_LOOKUP: 'none'
+      #UNICOLLD_DECODER_ENRICH_ASN_PREF: 'lookup'
+      #UNICOLLD_DECODER_ENRICH_ASN_CACHE_SIZE: 262144
+      #UNICOLLD_DECODER_ENRICH_ASN_MAXMIND_ASN_PATH: 'maxmind/GeoLite2-ASN.mmdb'
+      #UNICOLLD_DECODER_ENRICH_ASN_JOIN: 'true'
 
-      # none, riskiq, maxmind (riskiq will be implemented in beta 2)
-      UNICOLLD_DECODER_ENRICH_GEOIP_LOOKUP: 'maxmind'
+      #UNICOLLD_DECODER_ENRICH_GEOIP_LOOKUP: 'none'
+      #UNICOLLD_DECODER_ENRICH_GEOIP_CACHE_SIZE: 262144
+      #UNICOLLD_DECODER_ENRICH_GEOIP_MAXMIND_CITY_PATH: 'maxmind/GeoLite2-City.mmdb'
+      #UNICOLLD_DECODER_ENRICH_GEOIP_MAXMIND_VALUES: 'city,country,country_code,location,timezone'
+      #UNICOLLD_DECODER_ENRICH_GEOIP_MAXMIND_LANG: 'en'
+      #UNICOLLD_DECODER_ENRICH_GEOIP_JOIN: 'true'
 
-      # The size of the output queue.
-      # Recommendation: 12 x the value of UNICOLLD_SERVER_UDP_PACKET_STREAM_MAX_SIZE.
-      UNICOLLD_RECORD_STREAM_MAX_SIZE: 49152
+      #UNICOLLD_DECODER_ENRICH_COMMUNITYID_ENABLE: 'true'
+      #UNICOLLD_DECODER_ENRICH_COMMUNITYID_SEED: 0
+      #UNICOLLD_DECODER_ENRICH_CONVERSATIONID_ENABLE: 'true'
+      #UNICOLLD_DECODER_ENRICH_CONVERSATIONID_SEED: 0
 
-      # The Elasticsearch Output
+      #UNICOLLD_DECODER_ENRICH_EXPAND_CLISRV: 'true'
+      #UNICOLLD_DECODER_ENRICH_NETATTR_JOIN: 'true'
 
+      #UNICOLLD_DECODER_DURATION_PRECISION: 'ms'
+      #UNICOLLD_DECODER_TIMESTAMP_PRECISION: 'ms'
+      #UNICOLLD_DECODER_PERCENT_NORM: '100'
+
+      #UNICOLLD_RECORD_STREAM_MAX_SIZE: 
+
+      # stdout
+      #UNICOLLD_OUTPUT_STDOUT_ENABLE: 'false'
+      #UNICOLLD_OUTPUT_STDOUT_FORMAT: 'json_pretty'
+
+      # Elasticsearch
       UNICOLLD_OUTPUT_ELASTICSEARCH_ENABLE: 'true'
-      # The number of Elasticsearch output workers
-      # Recommendation: 1 x the number of cores used for decoding.
-      UNICOLLD_OUTPUT_ELASTICSEARCH_POOL_SIZE: 1
-
-      # start, end, export, collect
-      UNICOLLD_OUTPUT_ELASTICSEARCH_TIMESTAMP_SOURCE: 'end'
-
-      UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_OVERWRITE: 'true'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_ECS_ENABLE: 'false'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_BATCH_DEADLINE: 1000
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_BATCH_MAX_BYTES: 8388608
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_POOL_SIZE: 
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_TIMESTAMP_SOURCE: 'end'
+      
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_PERIOD: 'daily'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_SUFFIX: ''
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_ENABLE: 'true'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_OVERWRITE: 'false'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_SHARDS: 3
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_REPLICAS: 1
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_REFRESH_INTERVAL: '10s'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_CODEC: 'best_compression'
 
       # A comma separated list of Elasticsearch nodes to use. DO NOT include "http://" or "https://"
       UNICOLLD_OUTPUT_ELASTICSEARCH_ADDRESSES: '127.0.0.1:9200'
       UNICOLLD_OUTPUT_ELASTICSEARCH_USERNAME: 'elastic'
       UNICOLLD_OUTPUT_ELASTICSEARCH_PASSWORD: 'changeme'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_CLOUD_ID: ''
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_API_KEY: ''
 
-      UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_ENABLED: 'false'
-      UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_SKIP_VERIFICATION: 'true'
-      UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_CA_CERT_FILEPATH: ''
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_ENABLED: 'false'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_SKIP_VERIFICATION: 'false'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_CA_CERT_FILEPATH: '/etc/elastiflow/cert/ca/ca.crt'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_RETRY_ENABLE: 'true'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_RETRY_ON_TIMEOUT_ENABLE: 'false'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_MAX_RETRIES: 3
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_RETRY_BACKOFF: 1000
 
-      UNICOLLD_OUTPUT_ELASTICSEARCH_RETRY_ENABLE: 'true'
-      UNICOLLD_OUTPUT_ELASTICSEARCH_RETRY_ON_TIMEOUT_ENABLE: 'true'
-
-      # NOTE: The following settings configure the index template sent to Elasticsearch. They do not change any existing indices.
-      # The number of shards.
-      # Recommendation: 2 x the number of Elastic data nodes to which data will be indexed.
-      UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_SHARDS: 2
-      # The number of replicas. For a multi-node cluster set this to 1 or higher for redundancy. Otherwise set to zero.
-      UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_REPLICAS: 0
-      UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_REFRESH_INTERVAL: '15s'
-      UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_CODEC: 'best_compression'
+      # RiskIQ
+      #UNICOLLD_OUTPUT_RISKIQ_ENABLE: 'false'
+      #UNICOLLD_OUTPUT_RISKIQ_HOST: 'flow.riskiq.net'
+      #UNICOLLD_OUTPUT_RISKIQ_PORT: 20000
+      #UNICOLLD_OUTPUT_RISKIQ_CUSTOMER_UUID: ''
+      #UNICOLLD_OUTPUT_RISKIQ_CUSTOMER_ENCRYPTION_KEY: ''
 ```
 
 #### image
 
-The name of the current released image is `elastiflow/flow-collector:v5.0.0-beta.1`.
+The name of the current released image is `elastiflow/flow-collector:v5.0.0-beta.1.1`.
 
 #### restart
 
@@ -111,7 +161,7 @@ To work around this issue `network_mode` must be set to `host`.
 
 There are a few scenarios where it is necessary to make files on the host file system available to the collector.
 
-In the example above, `/etc/elastiflow/maxmind` on the host's filesystem is mapped into the same path within the container. After downloading the `GeoLite2-City` and `GeoLite2-ASN` maxmind databases from the Maxmind website, they can be placed at this location on the host's filesystem and will be able to be accessed by the collector within the container.
+In the example above, `/etc/elastiflow` on the host's filesystem is mapped into the same path within the container. After downloading the `GeoLite2-City` and `GeoLite2-ASN` maxmind databases from the Maxmind website, they can be placed at `/etc/elastiflow/maxmind` on the host's filesystem and will be able to be accessed by the collector within the container.
 
 > NOTE! It is also possible to build a new container, adding additional files as needed. This may the best choice if running the container in a dynamically orchestrated environment (e.g. running in Kubernetes). However for an instance dedicated to a specific host, using bind mounted volumes can be very convenient.
 
@@ -157,9 +207,44 @@ docker-compose -f /PATH/TO/docker-compose.yml down
 
 ## Maxmind Databases
 
-To use the Maxmind databases for GeoIP and ASN enrichment you will need to download the databases. Due to changes in privacy law in California, Maxmind no longer makes its GeoLite2 databases available for download without [registering on their website](https://dev.maxmind.com/geoip/geoip2/geolite2/). Once you have registered and downloaded the database, you can make them available to the ElastiFlow Unified Collector for enrichment of public IP addresses.
+To use the Maxmind databases for GeoIP and ASN enrichment you will need to download the databases. Due to changes in privacy law in California, Maxmind no longer makes its GeoLite2 databases available for download without [registering on their website](https://dev.maxmind.com/geoip/geoip2/geolite2/). Once you have registered and downloaded the database, you can make them available to the ElastiFlow Unified Flow Collector for enrichment of public IP addresses.
 
 ## Configuration Environment Variable Reference
+
+### General Settings
+
+#### `UNICOLLD_LICENSED_CORES`
+
+The ElastiFlow Unified Flow Collector is licensed by _**cores**_. By default the number of cores will be set based on the provided license key. However the number of cores to be used by as instance can be configured manually. This is usually done when it is desired to use multiple instances of the collector. For example, a subscription for 8 licensed cores can be split into 2 instances, of 4 cores each, by setting `UNICOLLD_LICENSED_CORES: 4` for each instance. If set to a value greater than allowed by the license key, the instances will be started with the number of cores from the license key.
+
+The default values of `UNICOLLD_SERVER_UDP_PACKET_STREAM_MAX_SIZE`, `UNICOLLD_RECORD_STREAM_MAX_SIZE` and `UNICOLLD_OUTPUT_ELASTICSEARCH_POOL_SIZE` are based on the number of licensed cores. However, these settings may also be set manually to override the defaults as needed for a given environment.
+
+The default value of `1` is the number of cores allowed under the `community` and `basic` subscription tiers. See [https://www.elastiflow.com/subscriptions](https://www.elastiflow.com/subscriptions) for more details about subscription options.
+
+- Default
+  - `1`
+
+> NOTE! The Beta releases of the ElastiFlow Unified Flow Collector has no limit on the number of cores which can be configured. For scale/throughput testing this value should be set to the number of physical cores available on the system running the collector.
+
+### Logging Settings
+
+#### `UNICOLLD_LOGGER_LEVEL`
+
+Specifies the output level for logging.
+
+- Valid Values
+  - `debug`, `info`, `warn`, `error`, `panic`, `fatal`
+- Default
+  - `info`
+
+#### `UNICOLLD_LOGGER_ENCODING`
+
+Specifies the output format of the produced logs.
+
+- Valid Values
+  - `console`, `json`
+- Default
+  - `json`
 
 ### UDP Server Settings
 
@@ -168,7 +253,7 @@ The ElastiFlow Unified Flow Collector receives network flow records over UDP.
 #### `UNICOLLD_SERVER_UDP_IP`
 
 - Valid Values
-  - `0.0.0.0` or any valid IP address to which the UCP socket can be bound.
+  - `0.0.0.0` or any valid IP address to which the UDP socket can be bound.
 - Default
   - `0.0.0.0` (listen on all interfaces)
 
@@ -188,22 +273,23 @@ The ElastiFlow Unified Flow Collector receives network flow records over UDP.
 Received UDP PDUs are queued prior to being processed by an available decoder. This value specifies the size of the queue as a quantity of PDUs.
 
 - Default
-  - `4096` times the number of configured cores (`UNICOLLD_DECODER_POOL_SIZE`).
+  - `4096 * UNICOLLD_LICENSED_CORES`
 
-> The default value for the `v5.0.0-beta.1` release is `4096`. It should be manually set to `4096 * UNICOLLD_DECODER_POOL_SIZE`
+#### `UNICOLLD_SERVER_UDP_READ_BUFFER_MAX_SIZE`
+
+The size, in bytes, of the UDP receive buffer that the UDP server will request be created by the operating system kernel when the socket is created. If this value exceeds the maximum allowed buffer size (`net.core.rmem_max` on Linux), the maximum allowed size is used.
+
+- Default
+  - `33554432`
 
 ### Flow Decoder Settings
 
-#### `UNICOLLD_DECODER_POOL_SIZE`
+#### `UNICOLLD_DECODER_SETTINGS_PATH`
 
-Specifies the number of concurrent decoder workers.
+The path where any files used by the collector's decoder functions are loacted.
 
-- Valid Values
-  - Any number up to the limit allowed by the applied license.
 - Default
-  - The number of licensed cores.
-
-> The `v5.0.0-beta.1` release does not limit the number of cores.
+  - `/etc/elastiflow`
 
 #### `UNICOLLD_DECODER_IPFIX_ENABLE`
 
@@ -433,6 +519,17 @@ If enrichment with autonomous system attributes is enabled using lookups in a Ma
 - Default
   - `/etc/elastiflow/maxmind/GeoLite2-ASN.mmdb`
 
+#### `UNICOLLD_DECODER_ENRICH_ASN_JOIN`
+
+Some features require that related values from separate fields are stored as an array in a single field. Such a "join" of autonomous system related fields is enabled when this setting is `true`.
+
+> NOTE! If records are being output to Elasticsearch this setting should be set to `true`.
+
+- Valid Values
+  - `true`, `false`
+- Default
+  - `true`
+
 #### `UNICOLLD_DECODER_ENRICH_GEOIP_LOOKUP`
 
 The ElastiFlow Unified Flow Collector will attempt to determine GeoIP attributes associated with a public IP address. This setting determines whether this feature is enabled and the source of the attribute data.
@@ -443,17 +540,6 @@ The ElastiFlow Unified Flow Collector will attempt to determine GeoIP attributes
   - `maxmind` - Use GeoIP attributes from Maxmind's `GeoLite2-City` or `GeoIP2-City` databases.
 - Default
   - `none`
-
-#### `UNICOLLD_DECODER_ENRICH_GEOIP_JOIN_RESULTS`
-
-Some features require that related values from separate fields are stored as an array in a single field. These "joins" are enabled when this setting is `true`.
-
-> NOTE! If records are being output to Elasticsearch this setting should be set to `true`.
-
-- Valid Values
-  - `true`, `false`
-- Default
-  - `true`
 
 #### `UNICOLLD_DECODER_ENRICH_GEOIP_CACHE_SIZE`
 
@@ -494,6 +580,17 @@ If enrichment with GeoIP attributes is enabled using lookups in a Maxmind databa
 - Default
   - `en`
 
+#### `UNICOLLD_DECODER_ENRICH_GEOIP_JOIN`
+
+Some features require that related values from separate fields are stored as an array in a single field. Such a "join" of GeoIP related fields is enabled when this setting is `true`.
+
+> NOTE! If records are being output to Elasticsearch this setting should be set to `true`.
+
+- Valid Values
+  - `true`, `false`
+- Default
+  - `true`
+
 #### `UNICOLLD_DECODER_ENRICH_COMMUNITYID_ENABLE`
 
 Specifies whether flow records should be enriched with a Community ID value.
@@ -527,6 +624,26 @@ A 16-bit value used as the seed for determining the Conversation ID of a flow re
 
 - Default
   - `0`
+
+#### `UNICOLLD_DECODER_ENRICH_EXPAND_CLISRV`
+
+The collector will infer the client/server relationship of two source/destination endpoints. The is setting determines whether such inferrence is enabled or not.
+
+- Valid Values
+  - `true`, `false`
+- Default
+  - `true`
+
+#### `UNICOLLD_DECODER_ENRICH_NETATTR_JOIN`
+
+Some features require that related values from separate fields are stored as an array in a single field. Such a "join" of network attribute related fields is enabled when this setting is `true`.
+
+> NOTE! If records are being output to Elasticsearch this setting should be set to `true`.
+
+- Valid Values
+  - `true`, `false`
+- Default
+  - `true`
 
 #### `UNICOLLD_DECODER_DURATION_PRECISION`
 
@@ -574,12 +691,8 @@ The desired representation of percentages. Values received with a different repr
 
 Processed records are queued prior to being processed by an available output instance. This value specifies the size of the queue as a quantity of records. As a single PDU typically contains multiple flow records, this value will typically be a multiple of `UNICOLLD_SERVER_UDP_PACKET_STREAM_MAX_SIZE`.
 
-- Recommended
-  - `12 * UNICOLLD_SERVER_UDP_PACKET_STREAM_MAX_SIZE`
 - Default
-  - `49152`
-
-> The default value for the `v5.0.0-beta.1` release is `49152`. It modified a value of `12 * UNICOLLD_SERVER_UDP_PACKET_STREAM_MAX_SIZE` is a good starting point.
+  - `12 * UNICOLLD_SERVER_UDP_PACKET_STREAM_MAX_SIZE`
 
 ### stdout Output
 
@@ -624,15 +737,6 @@ Specifies whether the data will be sent using Elastic Common Schema (ECS).
 
 > The `v5.0.0-beta.1` release does not yet include ECS support. It is planned for `v5.0.0-beta.2`.
 
-#### `UNICOLLD_OUTPUT_ELASTICSEARCH_POOL_SIZE`
-
-The number of Elasticsearch output workers.
-
-- Default
-  - `1` times the number of configured cores (`UNICOLLD_DECODER_POOL_SIZE`).
-
-> The default value for the `v5.0.0-beta.1` release is `1`. It should be manually set to HALF of `UNICOLLD_DECODER_POOL_SIZE`.
-
 #### `UNICOLLD_OUTPUT_ELASTICSEARCH_BATCH_DEADLINE`
 
 The maximum time, in milliseconds, to wait for a batch of records to fill before being sent to the Elasticsearch bulk API.
@@ -646,6 +750,13 @@ The maximum size, in bytes, for a batch of records being sent to the Elasticsear
 
 - Default
   - `8388608`
+
+#### `UNICOLLD_OUTPUT_ELASTICSEARCH_POOL_SIZE`
+
+The number of Elasticsearch output workers.
+
+- Default
+  - `1 * UNICOLLD_LICENSED_CORES`
 
 #### `UNICOLLD_OUTPUT_ELASTICSEARCH_TIMESTAMP_SOURCE`
 
@@ -693,6 +804,55 @@ If the output is configured to add the index template to Elasticsearch (`UNICOLL
   - `true`, `false`
 - Default
   - `false`
+
+#### `UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_SHARDS`
+
+The number of shards with which the index should be created. As a general rule, additional shards increases ingest performance, assuming there are sufficient data nodes across which the shards can be distributed.
+
+- Recommended
+  - `2` times the number of Elasticsearch data nodes to which data will be indexed.
+- Default
+  - `3`
+
+> NOTE: This setting configures the index template sent to Elasticsearch. It does NOT change any existing indices.
+
+#### `UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_REPLICAS`
+
+The number of replicas that should be created for each shard. If using a multi-node cluster and data redundancy is desired, this value must be at least `1`.
+
+In general, additional replicas will increase query performance, assuming there are sufficient data nodes across which the replicas can be distributed.
+
+- Recommended
+  - `1` times the number of Elasticsearch data nodes to which data will be indexed.
+- Default
+  - `1`
+
+> NOTE: This setting configures the index template sent to Elasticsearch. It does NOT change any existing indices.
+
+#### `UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_REFRESH_INTERVAL`
+
+Specifies the period for the refresh interval. The refresh interval is the time window in which newly ingested documents are added to a segment, prior to the segment being added to the index. Only after the refresh interval has ended and the segment has been added to the index do the documents become searchable.
+
+- Recommended
+  - `5s` - If the data needs to become available for queries more quickly. However shorter refresh intervals will negatively impact ingest performance.
+  - `30s` - (or longer) If maximizing ingest performance is the highest priority. Longer refresh intervals negatively impact the real-time accessibility of new records.
+  - `10s` or `15s` - This is a reasonable compromise between ingest performance and data accessibility for most network traffic analytics use-cases.
+- Default
+  - `10s`
+
+> NOTE: This setting configures the index template sent to Elasticsearch. It does NOT change any existing indices.
+
+#### `UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_CODEC`
+
+The setting determines the level of compression used for stored values.
+
+- Valid Values
+  - `default` - Stored values are compressed using LZ4.
+  - `best_compression` - Stored values are compressed using DEFLATE. This reduces disk capacity requirements with the trade-off of slightly higher CPU utilization.
+- Default
+  - `best_compression`
+
+> NOTE: This setting configures the index template sent to Elasticsearch. It does NOT change any existing indices.
 
 #### `UNICOLLD_OUTPUT_ELASTICSEARCH_ADDRESSES`
 
@@ -787,55 +947,6 @@ If set, this value specifies the quantity of milliseconds that the output should
 
 - Default
   - `1000`
-
-#### `UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_SHARDS`
-
-The number of shards with which the index should be created. As a general rule, additional shards increases ingest performance, assuming there are sufficient data nodes across which the shards can be distributed.
-
-- Recommended
-  - `2` times the number of Elasticsearch data nodes to which data will be indexed.
-- Default
-  - `2`
-
-> NOTE: This setting configures the index template sent to Elasticsearch. It does NOT change any existing indices.
-
-#### `UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_REPLICAS`
-
-The number of replicas that should be created for each shard. If using a multi-node cluster and data redundancy is desired, this value must be at least `1`.
-
-In general, additional replicas will increase query performance, assuming there are sufficient data nodes across which the replicas can be distributed.
-
-- Recommended
-  - `1` times the number of Elasticsearch data nodes to which data will be indexed.
-- Default
-  - `1`
-
-> NOTE: This setting configures the index template sent to Elasticsearch. It does NOT change any existing indices.
-
-#### `UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_REFRESH_INTERVAL`
-
-Specifies the period for the refresh interval. The refresh interval is the time window in which newly ingested documents are added to a segment, prior to the segment being added to the index. Only after the refresh interval has ended and the segment has been added to the index do the documents become searchable.
-
-- Recommended
-  - `5s` - If the data needs to become available for queries more quickly. However shorter refresh intervals will negatively impact ingest performance.
-  - `30s` - (or longer) If maximizing ingest performance is the highest priority. Longer refresh intervals negatively impact the real-time accessibility of new records.
-  - `10s` or `15s` - This is a reasonable compromise between ingest performance and data accessibility for most network traffic analytics use-cases.
-- Default
-  - `10s`
-
-> NOTE: This setting configures the index template sent to Elasticsearch. It does NOT change any existing indices.
-
-#### `UNICOLLD_OUTPUT_ELASTICSEARCH_INDEX_TEMPLATE_CODEC`
-
-The setting determines the level of compression used for stored values.
-
-- Valid Values
-  - `default` - Stored values are compressed using LZ4.
-  - `best_compression` - Stored values are compressed using DEFLATE. This reduces disk capacity requirements with the trade-off of slightly higher CPU utilization.
-- Default
-  - `best_compression`
-
-> NOTE: This setting configures the index template sent to Elasticsearch. It does NOT change any existing indices.
 
 ### RiskIQ Output
 
