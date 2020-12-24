@@ -4,15 +4,8 @@
         <title>ElastiFlow Blog</title>
         <link>https://elastiflow.github.io/blog</link>
         <description>ElastiFlow Blog</description>
-        <lastBuildDate>Wed, 29 May 2019 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 25 Oct 2015 23:29:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
-        <item>
-            <title><![CDATA[Hello]]></title>
-            <link>https://elastiflow.github.io/documentation/blog/hello-world</link>
-            <guid>hello-world</guid>
-            <pubDate>Wed, 29 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[Welcome to this blog. This blog is created with Docusaurus 2 alpha.]]></description>
-        </item>
     </channel>
 </rss>

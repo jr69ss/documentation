@@ -2,16 +2,9 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://elastiflow.github.io/blog</id>
     <title>ElastiFlow Blog</title>
-    <updated>2019-05-29T00:00:00.000Z</updated>
+    <updated>2015-10-25T23:29:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://elastiflow.github.io/blog"/>
     <subtitle>ElastiFlow Blog</subtitle>
     <icon>https://elastiflow.github.io/img/favicon.ico</icon>
-    <entry>
-        <title type="html"><![CDATA[Hello]]></title>
-        <id>hello-world</id>
-        <link href="https://elastiflow.github.io/documentation/blog/hello-world"/>
-        <updated>2019-05-29T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Welcome to this blog. This blog is created with Docusaurus 2 alpha.]]></summary>
-    </entry>
 </feed>
