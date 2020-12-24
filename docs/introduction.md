@@ -12,7 +12,7 @@ Networks are the unsung heroes of the modern world in which we live. Whether for
 
 The ElastiFlow Unified Flow Collector receives, decodes, transforms, normalizes, translates and enriches network flow records sent from network devices and applications using IPFIX, Netflow and sFlow. The resulting records can be sent to various data platforms including Elasticsearch, Splunk and Apache Kafka.
 
-![ElastiFlow UFC Architecture](img/architecture.jpeg)
+![ElastiFlow UFC Architecture](/img/architecture.jpg)
 
 ## New Unified Flow Collector vs Legacy Logstash Collector
 

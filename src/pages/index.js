@@ -8,8 +8,9 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: '<a href="https://www.elastiflow.com/getbeta">Download Free Beta</a>',
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
+    title: 'Download Free Beta',
+    titleHref: 'https://www.elastiflow.com/getbeta',
+    imageUrl: 'img/cloud-computing.svg',
     description: (
       <>
         Install our new ElastiFlow v5 Unified Flow Collector and see the power of an extremely scalable network visualization solution.
@@ -17,8 +18,9 @@ const features = [
     ),
   },
   {
-    title: '<a href="https://elastiflow.github.io/documentation/docs/install">Install Guide (Docker)</a>',
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
+    title: 'Install Guide (Docker)',
+    titleHref: 'https://elastiflow.github.io/documentation/docs/install',
+    imageUrl: 'img/computer.svg',
     description: (
       <>
         Get the Docker Installation Guide including a detailed view of all configuration options available in the Unified Flow Collector.
@@ -26,8 +28,9 @@ const features = [
     ),
   },
   {
-    title: '<a href="https://www.elastiflow.com">ElastiFlow Website</a>',
-    imageUrl: 'img/undraw_docusaurus_react.svg',
+    title: 'ElastiFlow Website',
+    titleHref: 'https://www.elastiflow.com',
+    imageUrl: 'img/world-wide-web.svg',
     description: (
       <>
         Learn more about ElastiFlow and the Unified Flow Collector on our Website. Schedule an introductory call or review our subscription plans.
@@ -36,7 +39,7 @@ const features = [
   },
 ];
 
-function Feature({imageUrl, title, description}) {
+function Feature({imageUrl, title, titleHref, description}) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
     <div className={clsx('col col--4', styles.feature)}>
@@ -45,7 +48,9 @@ function Feature({imageUrl, title, description}) {
           <img className={styles.featureImage} src={imgUrl} alt={title} />
         </div>
       )}
-      <h3>{title}</h3>
+      <h3>
+        <a href={titleHref}>{title}</a>
+      </h3>
       <p>{description}</p>
     </div>
   );
