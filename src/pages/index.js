@@ -8,32 +8,29 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: 'Easy to Use',
+    title: '<a href="https://www.elastiflow.com/getbeta">Download Free Beta</a>',
     imageUrl: 'img/undraw_docusaurus_mountain.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Install our new ElastiFlow v5 Unified Flow Collector and see the power of an extremely scalable network visualization solution.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: '<a href="https://elastiflow.github.io/documentation/docs/install">Install Guide (Docker)</a>',
     imageUrl: 'img/undraw_docusaurus_tree.svg',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Get the Docker Installation Guide including a detailed view of all configuration options available in the Unified Flow Collector.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: '<a href="https://www.elastiflow.com">ElastiFlow Website</a>',
     imageUrl: 'img/undraw_docusaurus_react.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Learn more about ElastiFlow and the Unified Flow Collector on our Website. Schedule an introductory call or review our subscription plans.
       </>
     ),
   },
@@ -59,8 +56,8 @@ function Home() {
   const {siteConfig = {}} = context;
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`Documentation: ${siteConfig.title}`}
+      description="Documentation and Developer Blogs around ElastiFlow's Unified Flow Collector<head />">
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
