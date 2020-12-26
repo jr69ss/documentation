@@ -7,11 +7,11 @@ title: Install
 
 The ElastiFlow Unified Flow Collector receives, decodes, transforms, normalizes, translates and enriches network flow records sent from network devices and applications using IPFIX, Netflow and sFlow. The resulting records can be sent to various data platforms including Elasticsearch, Splunk and Apache Kafka.
 
-> The `v5.0.0-beta.1` release only includes support for Elasticsearch. Additional platflorms will be added for the GA release.
+> The `v5.0.0-beta.1.1` release only includes support for Elasticsearch. Additional platflorms will be added for the GA release.
 
 ## Installation Using Docker and docker-compose
 
-> The `v5.0.0-beta.1` release is distributed only as a docker container. Additional deployment options will be available for the GA release.
+> The `v5.0.0-beta.1.1` release is distributed only as a docker container. Additional deployment options will be available for the GA release.
 
 A Docker container for the ElastiFlow Unified Flow Collector is available on [Docker Hub](https://hub.docker.com/r/elastiflow/flow-collector). [docker-compose](https://docs.docker.com/compose/) is a good way to run the container. It allows for the various environment variables, used to configure the collector, to be easily managed in one place without having to enter them on the command line.
 
@@ -735,7 +735,7 @@ Specifies whether the data will be sent using Elastic Common Schema (ECS).
 - Default
   - `false`
 
-> The `v5.0.0-beta.1` release does not yet include ECS support. It is planned for `v5.0.0-beta.2`.
+> The `v5.0.0-beta.1.1` release does not yet include ECS support. It is planned for `v5.0.0-beta.2`.
 
 #### `UNICOLLD_OUTPUT_ELASTICSEARCH_BATCH_DEADLINE`
 
