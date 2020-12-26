@@ -21,6 +21,8 @@ jobs:
       USE_SSH: 'true'
       GIT_USER: circleci
     steps:
+      - checkout
+      - node/install-packages
       - run: |
           git config --global user.email "ci@elastiflow.com"
           git config --global user.name "circleci"
