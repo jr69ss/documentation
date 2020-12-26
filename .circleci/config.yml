@@ -3,32 +3,40 @@ version: 2.1
 orbs:
   node: circleci/node@4.1.0
 
+executors:
+  node-executor:
+    docker:
+      - image: 'cimg/node:14.15.3'
+
 jobs:
   build:
-    executor:
-      name: node/default
-      tag: '14.15.3'
+    executor: node-executor
     steps:
       - checkout
       - node/install-packages
       - run: npm run build
+      - run: ls -a
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - build
+      - run: ls -a
   deploy:
-    executor:
-      name: node/default
-      tag: '14.15.3'
+    executor: node-executor
     environment:
       USE_SSH: 'true'
       GIT_USER: circleci
     steps:
-#      - run: |
-#          git config --global user.email "ci@elastiflow.com"
-#          git config --global user.name "circleci"
+      - run: |
+          git config --global user.email "ci@elastiflow.com"
+          git config --global user.name "circleci"
       - add_ssh_keys:
           fingerprints:
             - "76:27:70:69:2a:19:4d:1c:10:6a:10:2f:9f:f5:8b:02"
-      - checkout
-      - node/install-packages
-      - run: npm run build # TODO: Take build cache from npm run build
+      - run: ls -a
+      - attach_workspace:
+          at: ./
+      - run: ls -a
       - run: npm run deploy
 
 workflows:
