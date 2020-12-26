@@ -1,7 +1,34 @@
 version: 2.1
+
 orbs:
-  node: circleci/node@3.0.0
+  node: circleci/node@4.1.0
+
+jobs:
+  build:
+    executor:
+      name: node/default
+      tag: '14.15.3'
+    steps:
+      - checkout
+      - node/install-packages
+      - run: npm run build
+  deploy:
+    executor:
+      name: node/default
+      tag: '14.15.3'
+    steps:
+      - checkout
+      - node/install-packages
+      - run: npm run build
+      - run: npm run deploy
+
 workflows:
-  node-tests:
+  build-deploy:
     jobs:
-      - node/test
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: /^main/
