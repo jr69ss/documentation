@@ -125,7 +125,7 @@ services:
       #UNICOLLD_OUTPUT_ELASTICSEARCH_CLOUD_ID: ''
       #UNICOLLD_OUTPUT_ELASTICSEARCH_API_KEY: ''
 
-      #UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_ENABLED: 'false'
+      #UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_ENABLE: 'false'
       #UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_SKIP_VERIFICATION: 'false'
       #UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_CA_CERT_FILEPATH: '/etc/elastiflow/cert/ca/ca.crt'
       #UNICOLLD_OUTPUT_ELASTICSEARCH_RETRY_ENABLE: 'true'
@@ -858,7 +858,7 @@ The setting determines the level of compression used for stored values.
 
 This setting specifies the Elasticsearch servers to which the output should connect. It is a comma-separated list of Elasticsearch nodes, including port number.
 
-> WARNING! Do **NOT** include `http://` or `https://` in the provided value. TLS communications is enabled/disabled using `UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_ENABLED`.
+> WARNING! Do **NOT** include `http://` or `https://` in the provided value. TLS communications is enabled/disabled using `UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_ENABLE`.
 
 - Default
   - `127.0.0.1:9200`
@@ -891,7 +891,7 @@ The base64-encoded token to use for authorization. If set, this value overrides 
 - Default
   - `''`
 
-#### `UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_ENABLED`
+#### `UNICOLLD_OUTPUT_ELASTICSEARCH_TLS_ENABLE`
 
 This setting is used to enable/disable TLS connections to Elasticsearch.
 
