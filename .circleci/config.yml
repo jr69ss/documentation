@@ -39,7 +39,7 @@ workflows:
       - build:
           filters:
             branches:
-              only: /^(main|develop)/
+              only: /^(main|develop|hotfix\/.+)/
       - deploy:
           requires:
             - build
