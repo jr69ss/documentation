@@ -7,11 +7,11 @@ title: Install
 
 The ElastiFlow Unified Flow Collector receives, decodes, transforms, normalizes, translates and enriches network flow records sent from network devices and applications using IPFIX, Netflow and sFlow. The resulting records can be sent to various data platforms including Elasticsearch, Splunk and Apache Kafka.
 
-> The `v5.0.0-beta.1` release only includes support for Elasticsearch. Additional platflorms will be added for the GA release.
+> The `v5.0.0-beta.2` release only includes support for Elasticsearch. Additional platflorms will be added for the GA release.
 
 ## Installation Using Docker and docker-compose
 
-> The `v5.0.0-beta.1` release is distributed only as a docker container. Additional deployment options will be available for the GA release.
+> The `v5.0.0-beta.2` release is distributed only as a docker container. Additional deployment options will be available for the GA release.
 
 A Docker container for the ElastiFlow Unified Flow Collector is available on [Docker Hub](https://hub.docker.com/r/elastiflow/flow-collector). [docker-compose](https://docs.docker.com/compose/) is a good way to run the container. It allows for the various environment variables, used to configure the collector, to be easily managed in one place without having to enter them on the command line.
 
@@ -25,7 +25,7 @@ version: '3'
 services:
   # ElastiFlow Unified Flow Collector
   elastiflow-ufc:
-    image: elastiflow/flow-collector:v5.0.0-beta.1.1
+    image: elastiflow/flow-collector:v5.0.0-beta.2
     container_name: elastiflow-ufc
     restart: 'unless-stopped'
     network_mode: 'host'
@@ -143,7 +143,7 @@ services:
 
 #### image
 
-The name of the current released image is `elastiflow/flow-collector:v5.0.0-beta.1.1`.
+The name of the current released image is `elastiflow/flow-collector:v5.0.0-beta.2`.
 
 #### restart
 
@@ -735,8 +735,6 @@ Specifies whether the data will be sent using Elastic Common Schema (ECS).
 - Default
   - `false`
 
-> The `v5.0.0-beta.1` release does not yet include ECS support. It is planned for `v5.0.0-beta.2`.
-
 #### `UNICOLLD_OUTPUT_ELASTICSEARCH_BATCH_DEADLINE`
 
 The maximum time, in milliseconds, to wait for a batch of records to fill before being sent to the Elasticsearch bulk API.
@@ -950,7 +948,7 @@ If set, this value specifies the quantity of milliseconds that the output should
 
 ### RiskIQ Output
 
-> Flow records can be sent to RiskIQ for additional analysis. MORE details coming in `v5.0.0-beta.2`. For now these setting can be ignored.
+> Flow records can be sent to RiskIQ for additional analysis. MORE details coming in `v5.0.0-beta.3`. For now these setting can be ignored.
 
 #### `UNICOLLD_OUTPUT_RISKIQ_ENABLE`
 

@@ -79,6 +79,12 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} ElastiFlow.`,
     },
+    algolia: {
+      apiKey: 'daf13874bc90d69c5483cdb74e581282',
+      indexName: 'elastiflow',
+      contextualSearch: true,
+      searchParameters: {},
+    },
   },
   presets: [
     [

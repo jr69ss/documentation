@@ -1,5 +1,5 @@
 module.exports = {
   someSidebar: {
-    "Unified Flow Collector": ['introduction', 'install'],
+    "Unified Flow Collector": ['introduction', 'install', 'changelog'],
   },
 };
