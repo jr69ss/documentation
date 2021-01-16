@@ -16,8 +16,7 @@ Latest Version: v5.0.0-beta.2
 - Changes to Elasticsearch templates.
 
 ##### Migration Steps
-- **What are the migration steps for environment variable configurations?**
-- **Write up changes to template.**
+As we are still in a beta environment, we recommend the installation of v5.0.0-beta.2 in a new environment that does not contain data of the v5.0.0-beta.1 or previous ElastiFlow (v4.x) installations.
 
 #### Release Highlights
 - TLS support on the Elasticsearch output.
